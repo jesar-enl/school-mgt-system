@@ -244,12 +244,13 @@ export default function LoginPage() {
 
                 {/* Return to home */}
                 <div className="mt-6 text-center">
-                    <Link
-                        href="/"
-                        className="text-sm font-medium text-primary hover:text-indigo-600 transition-colors"
+                    <Button
+                        variant="ghost"
+                        className="text-sm font-medium text-primary hover:text-indigo-600 hover:bg-primary/5 transition-all duration-300"
+                        onClick={() => router.push('/')}
                     >
                         Return to home page
-                    </Link>
+                    </Button>
                 </div>
             </div>
         </div>

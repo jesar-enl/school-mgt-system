@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import MainLayout from "@/src/components/layout/MainLayout";
 import { Button } from "@/src/components/ui/button";
 import {
@@ -17,6 +19,42 @@ import {
 } from "lucide-react";
 
 export default function TimetablePage() {
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        const role = Cookies.get("user_role");
+        setUserRole(role || null);
+    }, []);
+
+    const isAdmin = userRole === "admin";
+
+    // Static timetable data
+    const timetableData = {
+        "8:00 AM - 9:00 AM": ["Mathematics", "Physics", "Chemistry", "Biology", "English"],
+        "9:00 AM - 10:00 AM": ["Physics", "Chemistry", "Biology", "English", "Mathematics"],
+        "10:30 AM - 11:30 AM": ["Chemistry", "Biology", "English", "Mathematics", "Physics"],
+        "11:30 AM - 12:30 PM": ["Biology", "English", "Mathematics", "Physics", "Chemistry"],
+        "2:00 PM - 3:00 PM": ["English", "Mathematics", "Physics", "Chemistry", "Biology"],
+        "3:00 PM - 4:00 PM": ["Mathematics", "Physics", "Chemistry", "Biology", "English"]
+    };
+
+    const teacherAssignments = {
+        "Mathematics": "Mr. John Smith",
+        "Physics": "Mrs. Sarah Wilson",
+        "Chemistry": "Dr. Michael Brown",
+        "Biology": "Ms. Emily Davis",
+        "English": "Mr. Robert Johnson"
+    };
+
+    // Color assignments for subjects
+    const subjectColors = {
+        "Mathematics": "bg-blue-50 text-blue-700 border-blue-100",
+        "Physics": "bg-green-50 text-green-700 border-green-100",
+        "Chemistry": "bg-purple-50 text-purple-700 border-purple-100",
+        "Biology": "bg-yellow-50 text-yellow-700 border-yellow-100",
+        "English": "bg-pink-50 text-pink-700 border-pink-100"
+    };
+
     return (
         <MainLayout>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -52,10 +90,12 @@ export default function TimetablePage() {
                                 <Download className="w-4 h-4" />
                                 Export
                             </Button>
-                            <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2">
-                                <Plus className="w-4 h-4" />
-                                Add Slot
-                            </Button>
+                            {isAdmin && (
+                                <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2">
+                                    <Plus className="w-4 h-4" />
+                                    Add Slot
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -64,10 +104,12 @@ export default function TimetablePage() {
                 <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                     <div className="flex items-center justify-between p-6 border-b border-gray-200">
                         <h3 className="text-lg font-semibold">Senior 3 Timetable</h3>
-                        <Button variant="outline" className="flex items-center gap-2">
-                            <Edit className="w-4 h-4" />
-                            Edit Timetable
-                        </Button>
+                        {isAdmin && (
+                            <Button variant="outline" className="flex items-center gap-2">
+                                <Edit className="w-4 h-4" />
+                                Edit Timetable
+                            </Button>
+                        )}
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full">
@@ -82,14 +124,7 @@ export default function TimetablePage() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                                {[
-                                    "8:00 AM - 9:00 AM",
-                                    "9:00 AM - 10:00 AM",
-                                    "10:30 AM - 11:30 AM",
-                                    "11:30 AM - 12:30 PM",
-                                    "2:00 PM - 3:00 PM",
-                                    "3:00 PM - 4:00 PM"
-                                ].map((timeSlot, index) => (
+                                {Object.entries(timetableData).map(([timeSlot, subjects], index) => (
                                     <tr key={index} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center gap-2">
@@ -97,36 +132,18 @@ export default function TimetablePage() {
                                                 <span className="text-sm font-medium text-gray-500">{timeSlot}</span>
                                             </div>
                                         </td>
-                                        {["Mathematics", "Physics", "Chemistry", "Biology", "English"].map((subject, subIndex) => {
-                                            // Generate random colored subject cells based on index position
-                                            const colors = [
-                                                "bg-blue-50 text-blue-700 border-blue-100",
-                                                "bg-green-50 text-green-700 border-green-100",
-                                                "bg-purple-50 text-purple-700 border-purple-100",
-                                                "bg-yellow-50 text-yellow-700 border-yellow-100",
-                                                "bg-pink-50 text-pink-700 border-pink-100"
-                                            ];
-
-                                            // Randomly determine if this cell should have a subject or be empty
-                                            const hasClass = Math.random() > 0.3;
-                                            const subjectToShow = hasClass ? subject : null;
-                                            const colorIndex = (index + subIndex) % colors.length;
-
-                                            return (
-                                                <td key={subIndex} className="px-6 py-4">
-                                                    {subjectToShow && (
-                                                        <div className={`px-3 py-2 rounded-lg border ${colors[colorIndex]}`}>
-                                                            <div className="font-medium">{subjectToShow}</div>
-                                                            <div className="text-xs mt-1 flex items-center gap-1">
-                                                                <BookOpen className="w-3 h-3" />
-                                                                <span>Mr. John Doe</span>
-                                                            </div>
-                                                            <div className="text-xs mt-1">Room 10{index + 1}</div>
-                                                        </div>
-                                                    )}
-                                                </td>
-                                            );
-                                        })}
+                                        {subjects.map((subject, subIndex) => (
+                                            <td key={subIndex} className="px-6 py-4">
+                                                <div className={`px-3 py-2 rounded-lg border ${subjectColors[subject]}`}>
+                                                    <div className="font-medium">{subject}</div>
+                                                    <div className="text-xs mt-1 flex items-center gap-1">
+                                                        <BookOpen className="w-3 h-3" />
+                                                        <span>{teacherAssignments[subject]}</span>
+                                                    </div>
+                                                    <div className="text-xs mt-1">Room 10{index + 1}</div>
+                                                </div>
+                                            </td>
+                                        ))}
                                     </tr>
                                 ))}
                             </tbody>

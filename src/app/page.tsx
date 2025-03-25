@@ -2,7 +2,7 @@
 
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
-import { BookOpen, GraduationCap, Users, Settings, Award, Clock, Shield, Globe, Mail, Phone, School, Microscope, Palette, Calculator, Book, Music, Trophy, Home as HomeIcon, BookOpenCheck, Building2, Wallet, Library, Menu, X, ChevronDown, ClipboardCheck, User, LogOut } from "lucide-react";
+import { BookOpen, GraduationCap, Users, Settings, Award, Clock, Shield, Globe, Mail, Phone, School, Microscope, Palette, Calculator, Book, Music, Trophy, Home as HomeIcon, BookOpenCheck, Building2, Wallet, Library, Menu, X, ChevronDown, ClipboardCheck, User, LogOut, Facebook, Twitter, Instagram, Linkedin, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -589,35 +589,58 @@ export default function Home() {
 
                         {/* Enhanced Objectives Section */}
                         <div className="mb-20 relative">
+                            {/* Background decorations */}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-indigo-500/5 rounded-3xl -z-10" />
-                            <h3 className="text-3xl font-semibold text-center mb-12 bg-gradient-to-r from-primary to-indigo-600 bg-clip-text text-transparent relative inline-block">
-                                Our Objectives
-                                <div className="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-primary/30 to-indigo-500/30" />
-                            </h3>
+                            <div className="absolute -top-10 right-10 w-20 h-20 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+                            <div className="absolute -bottom-10 left-10 w-20 h-20 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500" />
+
+                            <div className="text-center max-w-3xl mx-auto mb-16">
+                                <h3 className="text-3xl font-bold bg-gradient-to-r from-primary to-indigo-600 bg-clip-text text-transparent relative inline-block">
+                                    Our Objectives
+                                    <div className="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-primary/30 to-indigo-500/30" />
+                                </h3>
+                                <p className="mt-6 text-gray-600 text-lg">
+                                    We are committed to providing a comprehensive educational experience that prepares students for success in their academic and personal lives.
+                                </p>
+                            </div>
+
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {objectives.map((objective, index) => (
                                     <div
                                         key={index}
-                                        className="relative group p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                                        className="relative group p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-primary/10"
                                         style={{ animationDelay: `${index * 100}ms` }}
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-indigo-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                                        {/* Enhanced decorative elements */}
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-indigo-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary-rgb),0.1),transparent_50%)] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+
                                         <div className="relative flex items-start gap-4">
-                                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-indigo-500/10 flex items-center justify-center shrink-0 mt-1 transform group-hover:rotate-6 transition-transform duration-300">
-                                                <div className="text-primary group-hover:scale-110 transition-transform duration-300">
+                                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 via-indigo-500/20 to-purple-500/20 flex items-center justify-center shrink-0 mt-1 transform group-hover:rotate-6 transition-transform duration-300 group-hover:scale-110">
+                                                <div className="text-primary group-hover:text-indigo-600 transition-colors duration-300">
                                                     {objective.icon}
                                                 </div>
                                             </div>
-                                            <p className="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
-                                                {objective.text}
-                                            </p>
+                                            <div>
+                                                <h4 className="text-lg font-semibold bg-gradient-to-r from-primary via-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2 group-hover:scale-105 transition-transform duration-300">
+                                                    {objective.title}
+                                                </h4>
+                                                <p className="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                                                    {objective.text}
+                                                </p>
+                                            </div>
                                         </div>
-                                        {/* Enhanced corner decorations */}
-                                        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary/30 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-primary/30 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-primary/30 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/30 rounded-br-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                                        {/* Enhanced corner decorations with gradients */}
+                                        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/30 rounded-tl-lg opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-indigo-500/50" />
+                                        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/30 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-purple-500/50" />
+                                        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary/30 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-purple-500/50" />
+                                        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/30 rounded-br-lg opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:border-indigo-500/50" />
+
+                                        {/* Floating dots decoration */}
+                                        <div className="absolute -top-2 -right-2 w-2 h-2 bg-primary/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-ping" />
+                                        <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-indigo-500/40 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-ping delay-300" />
                                     </div>
                                 ))}
                             </div>
@@ -852,20 +875,92 @@ export default function Home() {
             </main>
 
             {/* Footer */}
-            <footer className="bg-white border-t border-gray-200">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="text-center">
-                        <Link href="/" className="inline-block group mb-6">
-                            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-indigo-600 bg-clip-text text-transparent">
-                                Joyious Secondary School
-                            </h3>
-                        </Link>
-                        <p className="text-gray-600 max-w-md mx-auto">
-                            Nurturing Excellence, Building Character, Shaping Future Leaders
-                        </p>
+            <footer className="bg-gradient-to-br from-primary/5 via-indigo-400 to-primary/5 border-t border-primary/10">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                        {/* School Info */}
+                        <div className="md:col-span-2">
+                            <Link href="/" className="inline-block group mb-6">
+                                <h3 className="text-3xl font-bold bg-gradient-to-r from-primary to-indigo-600 bg-clip-text text-transparent">
+                                    Joyious Secondary School
+                                </h3>
+                            </Link>
+                            <p className="text-gray-600 mb-6">
+                                Nurturing Excellence, Building Character, Shaping Future Leaders
+                            </p>
+                            <div className="flex space-x-4">
+                                <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors">
+                                    <Facebook className="w-5 h-5" />
+                                </a>
+                                <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors">
+                                    <Twitter className="w-5 h-5" />
+                                </a>
+                                <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors">
+                                    <Instagram className="w-5 h-5" />
+                                </a>
+                                <a href="#" className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors">
+                                    <Linkedin className="w-5 h-5" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Quick Links */}
+                        <div>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h4>
+                            <ul className="space-y-2">
+                                <li>
+                                    <Link href="/about" className="text-gray-600 hover:text-primary transition-colors">About Us</Link>
+                                </li>
+                                <li>
+                                    <Link href="/academic" className="text-gray-600 hover:text-primary transition-colors">Academics</Link>
+                                </li>
+                                <li>
+                                    <Link href="/admissions" className="text-gray-600 hover:text-primary transition-colors">Admissions</Link>
+                                </li>
+                                <li>
+                                    <Link href="/news" className="text-gray-600 hover:text-primary transition-colors">News & Events</Link>
+                                </li>
+                                <li>
+                                    <Link href="/contact" className="text-gray-600 hover:text-primary transition-colors">Contact Us</Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Contact Info */}
+                        <div>
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">Contact Us</h4>
+                            <ul className="space-y-3">
+                                <li className="flex items-start space-x-3 text-gray-600">
+                                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span>123 School Street, City, Country</span>
+                                </li>
+                                <li className="flex items-center space-x-3 text-gray-600">
+                                    <Phone className="w-5 h-5 text-primary" />
+                                    <span>+1 234 567 890</span>
+                                </li>
+                                <li className="flex items-center space-x-3 text-gray-600">
+                                    <Mail className="w-5 h-5 text-primary" />
+                                    <span>info@joyious.edu</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="mt-8 text-center text-sm text-gray-600">
-                        © {new Date().getFullYear()} Joyious Secondary School. All rights reserved.
+
+                    {/* Bottom Bar */}
+                    <div className="pt-8 mt-8 border-t border-gray-200">
+                        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                            <div className="text-sm text-gray-600">
+                                © {new Date().getFullYear()} Joyious Secondary School. All rights reserved.
+                            </div>
+                            <div className="flex space-x-6 text-sm">
+                                <Link href="/privacy" className="text-gray-600 hover:text-primary transition-colors">
+                                    Privacy Policy
+                                </Link>
+                                <Link href="/terms" className="text-gray-600 hover:text-primary transition-colors">
+                                    Terms of Service
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </footer>
@@ -924,26 +1019,32 @@ const aLevelClasses = [
 const objectives = [
     {
         icon: <GraduationCap className="w-5 h-5" />,
+        title: "Academic Excellence",
         text: "To provide high-quality education that meets international standards and prepares students for global opportunities."
     },
     {
         icon: <Users className="w-5 h-5" />,
+        title: "Collaborative Learning",
         text: "To foster a supportive learning environment that encourages collaboration, creativity, and critical thinking."
     },
     {
         icon: <BookOpen className="w-5 h-5" />,
+        title: "Balanced Curriculum",
         text: "To maintain a balanced curriculum that emphasizes both academic excellence and practical skills development."
     },
     {
         icon: <Shield className="w-5 h-5" />,
+        title: "Character Development",
         text: "To instill strong moral values, ethics, and leadership qualities in our students."
     },
     {
         icon: <Globe className="w-5 h-5" />,
+        title: "Global Perspective",
         text: "To promote cultural awareness and prepare students to thrive in an increasingly interconnected world."
     },
     {
         icon: <Award className="w-5 h-5" />,
+        title: "Individual Growth",
         text: "To recognize and nurture individual talents while promoting overall personal development."
     }
 ]; 
