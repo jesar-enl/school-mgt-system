@@ -13,7 +13,6 @@ A modern, full-stack web application for managing educational institutions. Buil
   - System monitoring and analytics
   - Approval workflows
   - Event scheduling
-  - and
 
 - **Teacher Dashboard**: Tools for academic management
 
