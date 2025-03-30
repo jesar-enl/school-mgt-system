@@ -5,14 +5,18 @@ A modern, full-stack web application for managing educational institutions. Buil
 ## Features
 
 ### Role-Based Access Control
+
 - **Admin Dashboard**: Complete administrative control over the system
+
   - User management (students, teachers, staff)
   - Department management
   - System monitoring and analytics
   - Approval workflows
   - Event scheduling
+  - and
 
 - **Teacher Dashboard**: Tools for academic management
+
   - Class management
   - Student assessment tracking
   - Attendance management
@@ -20,6 +24,7 @@ A modern, full-stack web application for managing educational institutions. Buil
   - Schedule viewing
 
 - **Staff Dashboard**: Administrative tools
+
   - Attendance tracking
   - Fee management
   - Facility management
@@ -34,6 +39,7 @@ A modern, full-stack web application for managing educational institutions. Buil
   - Grade monitoring
 
 ### Security Features
+
 - Secure authentication system
 - Role-based access control
 - Protected routes
@@ -41,6 +47,7 @@ A modern, full-stack web application for managing educational institutions. Buil
 - Secure cookie handling
 
 ### UI/UX Features
+
 - Responsive design for all devices
 - Modern and clean interface
 - Interactive dashboards
@@ -52,6 +59,7 @@ A modern, full-stack web application for managing educational institutions. Buil
 ## Tech Stack
 
 - **Frontend**:
+
   - Next.js 14 (App Router)
   - TypeScript
   - Tailwind CSS
@@ -82,22 +90,26 @@ src/
 ## Getting Started
 
 1. **Clone the repository**
+
    ```bash
    git clone [repository-url]
    cd school_management_system
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    ```
 
 4. **Run the development server**
+
    ```bash
    npm run dev
    ```
@@ -108,6 +120,7 @@ src/
 ## Authentication
 
 The system uses role-based authentication:
+
 - Admin: admin@example.com
 - Teacher: teacher@example.com
 - Staff: staff@example.com
@@ -123,4 +136,4 @@ The system uses role-based authentication:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
